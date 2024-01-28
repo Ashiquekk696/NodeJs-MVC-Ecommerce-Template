@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const cloudinary = require('../config/cloudinary_config');
 const { verifyToken } = require("../config/verify_token");
 const ForgotPasswordModel = require("../model/forgot_password_model");
+const OtpModel = require("../model/Otp_model");
 
 exports.signUp = async (req,res)=>{
  var result;
@@ -77,6 +78,9 @@ exports.forgotPassword = async(req,res)=>{
     for (let i = 0; i < otpLength; i++) {
       otp += Math.floor(Math.random() * 10);
     }
+     const otpData = new OtpModel(otp,email)
+     otpData.save();
+      console.log(otp);
   
    try {
     const forgotPassword = await ForgotPasswordModel({email,otp});

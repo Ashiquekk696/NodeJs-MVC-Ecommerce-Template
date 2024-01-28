@@ -3,7 +3,7 @@ const otpSchema = mongose.Schema(
     {  otp:{
         type:String
     },
-    mobile:{
+    email:{
         type:String
     },
      expires_at:{
