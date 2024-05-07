@@ -4,7 +4,24 @@ const cloudinary = require('../config/cloudinary_config');
 const { verifyToken } = require("../config/verify_token");
 const ForgotPasswordModel = require("../model/forgot_password_model");
 const OtpModel = require("../model/Otp_model");
+const { NamiPic } = require("../model/nami_img");
 
+
+exports.uploadImage= async (req,res)=>{
+  await cloudinary.v2.uploader.upload(path,{folder:"ashique_ecommerce_subfolder"},async(error, cldResult) => {
+    console.log(cldResult);
+    if(error){
+      res.status(500).json({ error: 'Error uploading image to Cloudinary' });
+      return;
+   
+   
+    }
+    const img = cldResult.secure_url;
+  const data = NamiPic({img})
+  await res.status(201).json({mess:"User Created Successfully",result:data})
+  }
+  )
+}
 exports.signUp = async (req,res)=>{
  var result;
  try { 
