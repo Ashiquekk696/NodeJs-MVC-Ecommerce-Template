@@ -25,6 +25,7 @@ exports.signUp = async (req,res)=>{
    await res.status(401).json({result:result})
    }
   else{
+    
     await cloudinary.v2.uploader.upload(path,{folder:"ashique_ecommerce_subfolder"},async(error, cldResult) => {
       console.log(cldResult);
       if(error){

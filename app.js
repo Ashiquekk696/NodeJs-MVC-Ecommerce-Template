@@ -10,8 +10,7 @@ const productRouter = require('./routes/product_route')
 const morgan = require('morgan')
 require('dotenv').config()
 dbConnect()
-
-const port = 3000
+ 
 
 // app.use("/",(req,res)=>{
 //     res.send("helllllooo")
@@ -26,6 +25,6 @@ app.use('/twilio-sms',twilioRouter)
 app.use('/verify',realOtpRouter)
 app.use('/cart',cartRouter)
 app.use('/product',productRouter)
-app.listen(port,()=>{
+app.listen(process.env.PORT,()=>{
     console.log("Server connected");
 })
